@@ -10,6 +10,7 @@ import ProductView from "../pages/Inventory/ProductView";
 import EditProduct from "../pages/Inventory/EditProduct";
 import CloneProduct from "../pages/AddProduct/CloneProduct";
 import SellHistory from "../pages/SellHistory/SellHistory";
+import ManagerRoute from "./ManagerRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "add-product",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <ManagerRoute>
+            <AddProduct></AddProduct>
+          </ManagerRoute>
+        ),
       },
       {
         path: "inventory",
