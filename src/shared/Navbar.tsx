@@ -41,12 +41,16 @@ const Navbar = () => {
               >
                 Inventory
               </NavLink>
-              <NavLink
-                className="btn btn-outline text-white btn-sm"
-                to="/add-product"
-              >
-                Add Product
-              </NavLink>
+
+              {/* manager route */}
+              {user?.user?.role === "manager" && (
+                <NavLink
+                  className="btn btn-outline text-white btn-sm"
+                  to="/add-product"
+                >
+                  Add Product
+                </NavLink>
+              )}
               <NavLink
                 className="btn btn-outline text-white btn-sm"
                 to="/sell-history"

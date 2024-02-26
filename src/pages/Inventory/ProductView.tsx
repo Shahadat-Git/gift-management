@@ -7,12 +7,14 @@ import {
 import Container from "../../components/Container";
 import { TailSpin } from "react-loader-spinner";
 import toast from "react-hot-toast";
+import { useAppSelector } from "../../redux/hooks";
 
 const ProductView = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetSingleProductQuery(id);
   const [sellProduct] = useSellProductMutation();
   const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
 
   const handleSell = async (e: any) => {
     e.preventDefault();
@@ -109,6 +111,7 @@ const ProductView = () => {
                 </p>
                 <div className="card-actions justify-end">
                   <button
+                    disabled={user?.role !== "seller"}
                     onClick={() => {
                       const modal = document.getElementById(
                         "my_modal_3"
