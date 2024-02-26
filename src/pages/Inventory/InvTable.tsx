@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useDeleteSingleProductMutation } from "../../redux/api/baseApi";
 import toast from "react-hot-toast";
+import { useAppSelector } from "../../redux/hooks";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const InvTable = ({ product, selectedData, setSelectedData }: any) => {
   const [singleDelete] = useDeleteSingleProductMutation();
+  const { user } = useAppSelector((state) => state.auth);
 
   const handleSelectedData = (e: any) => {
     const selectedId = e.target.value;
@@ -30,6 +32,7 @@ const InvTable = ({ product, selectedData, setSelectedData }: any) => {
       <th>
         <label>
           <input
+            disabled={user?.role === "seller"}
             onClick={handleSelectedData}
             defaultValue={product?._id}
             type="checkbox"
@@ -54,33 +57,40 @@ const InvTable = ({ product, selectedData, setSelectedData }: any) => {
         <br />
       </td>
       <td>{product?.productPrice} $</td>
-      <th className="flex flex-col gap-1">
+      <th className={`${user?.role === "manager" && "flex flex-col  gap-1"}`}>
         <NavLink
           to={`/inventory/product/${product?._id}`}
-          className="btn btn-success btn-xs text-neutral font-mono"
+          className={`${
+            user?.role === "manager"
+              ? "btn btn-success btn-xs text-neutral font-mono"
+              : "btn btn-outline text-neutral font-mono"
+          }`}
         >
           View
         </NavLink>
-
-        <NavLink
-          to={`/add-product/${product?._id}`}
-          className="btn btn-warning btn-xs text-neutral font-mono"
-        >
-          Create Variant
-        </NavLink>
-        <NavLink
-          to={`/inventory/product/edit/${product?._id}`}
-          className="btn btn-accent btn-xs text-neutral font-mono"
-        >
-          Edit
-        </NavLink>
-        <button
-          onClick={() => handleSingleDelete(product?._id)}
-          className="btn btn-error btn-xs text-neutral font-mono"
-        >
-          {" "}
-          Delete
-        </button>
+        {user?.role === "manager" && (
+          <>
+            <NavLink
+              to={`/add-product/${product?._id}`}
+              className="btn btn-warning btn-xs text-neutral font-mono"
+            >
+              Create Variant
+            </NavLink>
+            <NavLink
+              to={`/inventory/product/edit/${product?._id}`}
+              className="btn btn-accent btn-xs text-neutral font-mono"
+            >
+              Edit
+            </NavLink>
+            <button
+              onClick={() => handleSingleDelete(product?._id)}
+              className="btn btn-error btn-xs text-neutral font-mono"
+            >
+              {" "}
+              Delete
+            </button>
+          </>
+        )}{" "}
       </th>
     </tr>
   );
