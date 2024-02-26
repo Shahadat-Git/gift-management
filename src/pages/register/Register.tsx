@@ -16,10 +16,11 @@ const Register = () => {
       username: e.target.username.value,
       name: e.target.fullname.value,
       email: e.target.email.value,
+      role: e.target.role.value,
       password: e.target.password.value,
     };
 
-    console.log(userData);
+    // console.log(userData);
 
     const response: any = await loginData(userData);
     if (!response?.error) {
@@ -83,6 +84,17 @@ const Register = () => {
                     placeholder="email"
                     className="input input-bordered w-full "
                   />
+                </label>
+                <label className="form-control w-full ">
+                  <div className="label">
+                    <span className="label-text font-semibold text-md">
+                      Role :{" "}
+                    </span>
+                  </div>
+                  <select name="role" className="select select-bordered w-full">
+                    <option value={"seller"}>Seller</option>
+                    <option value={"manager"}>Manager</option>
+                  </select>
                 </label>
                 <label className="form-control w-full ">
                   <div className="label">

@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="flex justify-center gap-5 bg-neutral pb-5">
         {user?.user && (
           <div className="">
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center justify-center">
               <h3 className="text-neutral-content text-2xl font-semibold">
                 {user?.user?.name}
               </h3>
