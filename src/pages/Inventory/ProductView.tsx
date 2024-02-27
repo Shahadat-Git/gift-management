@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  useGetCouponQuery,
   useGetSingleProductQuery,
   useSellProductMutation,
 } from "../../redux/api/baseApi";
@@ -8,6 +9,7 @@ import Container from "../../components/Container";
 import { TailSpin } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import { useAppSelector } from "../../redux/hooks";
+import { useState } from "react";
 
 const ProductView = () => {
   const { id } = useParams();
@@ -15,14 +17,39 @@ const ProductView = () => {
   const [sellProduct] = useSellProductMutation();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
+  const [coupon, setCoupon] = useState("");
+  const { data: couponData, error } = useGetCouponQuery(coupon, {
+    skip: !coupon,
+  });
 
   const handleSell = async (e: any) => {
     e.preventDefault();
+
+    if (e.target.coupon.value) {
+      // console.log(couponData, error);
+      if (error) {
+        return toast.error("coupon not working!!");
+      }
+    }
+
+    if (couponData) {
+      const { data } = couponData;
+      // console.log(data);
+      if (data?.coupon !== e.target.coupon.value) {
+        return toast.error("coupon not working!!");
+      }
+    }
+
     const data = {
       buyerName: e.target.buyerName.value,
       quantity: Number(e.target.quantity.value),
       date: e.target.date.value,
+      seller: user?.username,
+      coupon: e.target.coupon.value,
+      discount: couponData?.data?.amount,
     };
+
+    // console.log(data);
 
     const option = {
       data,
@@ -182,6 +209,21 @@ const ProductView = () => {
                 required
                 placeholder="date"
                 className="input input-bordered w-full "
+              />
+            </label>
+            <label className="form-control w-full ">
+              <div className="label">
+                <span className="label-text font-semibold text-md">
+                  Coupon :{" "}
+                </span>
+              </div>
+
+              <input
+                name="coupon"
+                type="text"
+                placeholder="Coupon (optional)"
+                className="input input-bordered w-full"
+                onChange={(e) => setCoupon(e.target.value)}
               />
             </label>
 

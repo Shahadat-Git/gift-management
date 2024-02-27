@@ -141,6 +141,16 @@ export const baseApi = createApi({
       },
       providesTags: ["sell"],
     }),
+
+    // sell history
+    getCoupon: builder.query({
+      query: (id) => {
+        return {
+          url: `sell/coupon/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -153,4 +163,5 @@ export const {
   useSellProductMutation,
   useSellHistoryQuery,
   useDeleteManyProductMutation,
+  useGetCouponQuery,
 } = baseApi;
