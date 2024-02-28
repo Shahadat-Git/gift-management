@@ -3,6 +3,7 @@ import { TailSpin } from "react-loader-spinner";
 import Container from "../../components/Container";
 import { useSellHistoryQuery } from "../../redux/api/baseApi";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export type TSalesHistory = {
   _id: string;
@@ -108,8 +109,9 @@ const SellHistory = () => {
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Buyer Name</th>
-                <th>Total Price</th>
+                <th>Final Price</th>
                 <th>Date</th>
+                <th>Invoice</th>
               </tr>
             </thead>
             <tbody>
@@ -118,8 +120,10 @@ const SellHistory = () => {
                   <td>{item.productName}</td>
                   <td>{item.quantity}</td>
                   <td>{item.buyerName}</td>
-                  <td>{item.totalPrice}</td>
+                  <td>{item.finalPrice}</td>
                   <td>{item.dateOfSelling}</td>
+                  <td><NavLink to={`/sell-history/invoice/${item._id}`} className="btn btn-sm btn-neutral
+                  ">View Invoice</NavLink></td>
                 </tr>
               ))}
             </tbody>

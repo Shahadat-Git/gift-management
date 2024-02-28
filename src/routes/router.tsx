@@ -11,6 +11,7 @@ import EditProduct from "../pages/Inventory/EditProduct";
 import CloneProduct from "../pages/AddProduct/CloneProduct";
 import SellHistory from "../pages/SellHistory/SellHistory";
 import ManagerRoute from "./ManagerRoute";
+import Invoice from "../Invoice/Invoice";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "sell-history",
         element: <SellHistory />,
+      },
+      {
+        path: "sell-history/invoice/:id",
+        element: <Invoice />,
       },
     ],
   },
