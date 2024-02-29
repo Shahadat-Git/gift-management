@@ -5,7 +5,6 @@ import {
   useAddCouponMutation,
   useGetAllCouponQuery,
 } from "../../redux/api/baseApi";
-import { useGetLoginMutation } from "../../redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { useAppSelector } from "../../redux/hooks";
 

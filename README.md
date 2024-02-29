@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Live Link](https://gift-inventory-dashboard.web.app/)
+[Live Link](https://gift-shop-inventory.web.app/)
 
 ## Overview
 
@@ -13,13 +13,13 @@ This is a Gift Management system where admin can add, update, delete , sell and 
 1. **Get the code:**
 
    ```bash
-   git clone https://github.com/Porgramming-Hero-web-course/l2b2-full-stack-a5-client-side-Shahadat-Git.git
+   git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-fronten-Shahadat-Git.git
    ```
 
 2. **Go to the project directory:**
 
    ```bash
-   cd l2b2-full-stack-a5-client-side-Shahadat-Git
+   cd l2-b2-assignment-6-fronten-Shahadat-Git
    ```
 
 3. **Install dependencies:**
