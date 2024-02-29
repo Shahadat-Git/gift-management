@@ -142,7 +142,17 @@ export const baseApi = createApi({
       providesTags: ["sell"],
     }),
 
-    // sell history
+    // single sell history
+    SingleSellHistory: builder.query({
+      query: (id) => {
+        return {
+          url: `sell/history/${id}`,
+          method: "GET",
+        };
+      },
+    }),
+
+    // coupon check history
     getCoupon: builder.query({
       query: (id) => {
         return {
@@ -164,4 +174,5 @@ export const {
   useSellHistoryQuery,
   useDeleteManyProductMutation,
   useGetCouponQuery,
+  useSingleSellHistoryQuery,
 } = baseApi;

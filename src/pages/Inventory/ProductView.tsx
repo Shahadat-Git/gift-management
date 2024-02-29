@@ -57,9 +57,10 @@ const ProductView = () => {
     };
 
     const result: any = await sellProduct(option);
+    // console.log(result);
     if (result?.data?.success) {
       toast.success("Successfully sold!");
-      navigate("/inventory");
+      navigate(`/sell-history/invoice/${result?.data?.data?.result?._id}`);
     }
 
     e.target.reset();
