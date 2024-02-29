@@ -12,6 +12,7 @@ import CloneProduct from "../pages/AddProduct/CloneProduct";
 import SellHistory from "../pages/SellHistory/SellHistory";
 import ManagerRoute from "./ManagerRoute";
 import Invoice from "../Invoice/Invoice";
+import Coupon from "../pages/Coupon/Coupon";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <ManagerRoute>
             <AddProduct></AddProduct>
+          </ManagerRoute>
+        ),
+      },
+      {
+        path: "coupon",
+        element: (
+          <ManagerRoute>
+            <Coupon />
           </ManagerRoute>
         ),
       },

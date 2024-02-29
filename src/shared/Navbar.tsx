@@ -31,7 +31,7 @@ const Navbar = () => {
                 Logout
               </button>
             </div>
-            <div className=" flex justify-center gap-2 mt-4">
+            <div className=" flex justify-center gap-2 mt-4 flex-wrap">
               <NavLink className="btn btn-outline text-white btn-sm" to="/">
                 Home
               </NavLink>
@@ -44,12 +44,20 @@ const Navbar = () => {
 
               {/* manager route */}
               {user?.user?.role === "manager" && (
-                <NavLink
-                  className="btn btn-outline text-white btn-sm"
-                  to="/add-product"
-                >
-                  Add Product
-                </NavLink>
+                <>
+                  <NavLink
+                    className="btn btn-outline text-white btn-sm"
+                    to="/add-product"
+                  >
+                    Add Product
+                  </NavLink>
+                  <NavLink
+                    className="btn btn-outline text-white btn-sm"
+                    to="/coupon"
+                  >
+                    Coupon
+                  </NavLink>
+                </>
               )}
               <NavLink
                 className="btn btn-outline text-white btn-sm"

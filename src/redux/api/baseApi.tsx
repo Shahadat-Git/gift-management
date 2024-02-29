@@ -17,7 +17,7 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["products", "singleProduct", "sell"],
+  tagTypes: ["products", "singleProduct", "sell", "coupon"],
   endpoints: (builder) => ({
     // add products
     addProduct: builder.mutation({
@@ -152,7 +152,7 @@ export const baseApi = createApi({
       },
     }),
 
-    // coupon check history
+    // coupon check
     getCoupon: builder.query({
       query: (id) => {
         return {
@@ -160,6 +160,29 @@ export const baseApi = createApi({
           method: "GET",
         };
       },
+    }),
+
+    // gell all coupon
+    getAllCoupon: builder.query({
+      query: () => {
+        return {
+          url: `sell/coupons`,
+          method: "GET",
+        };
+      },
+      providesTags: ["coupon"],
+    }),
+
+    // add coupon
+    addCoupon: builder.mutation({
+      query: (data) => {
+        return {
+          url: "sell/create-coupon",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["coupon"],
     }),
   }),
 });
@@ -175,4 +198,6 @@ export const {
   useDeleteManyProductMutation,
   useGetCouponQuery,
   useSingleSellHistoryQuery,
+  useGetAllCouponQuery,
+  useAddCouponMutation,
 } = baseApi;
